@@ -11,6 +11,7 @@ import ToasterContext from "./api/contex/ToasetContex";
 import { useEffect, useState } from "react";
 import PreLoader from "@/components/Common/PreLoader";
 import Loading from "@/components/Common/PreLoader";
+import Script from "next/script";
 
 export default function RootLayout({
   children,
@@ -29,7 +30,22 @@ export default function RootLayout({
       className="!scroll-smooth"
       lang="en"
     >
-      <head />
+      <head>
+       {/* Google Analytics */}
+       <Script
+         strategy="afterInteractive"
+         src="https://www.googletagmanager.com/gtag/js?id=G-78M5LJT67E"
+       />
+       <Script id="google-analytics" strategy="afterInteractive">
+         {`
+           window.dataLayer = window.dataLayer || [];
+           function gtag(){dataLayer.push(arguments);}
+           gtag('js', new Date());
+           gtag('config', 'G-78M5LJT67E');
+         `}
+       </Script>
+     </head>
+
       <body>
         {loading ? (
           <PreLoader />
